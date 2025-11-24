@@ -1,4 +1,4 @@
-def get_exchange_rates():
+def get_exchange_prices():
     """Returns a dictionary of exchange rates relative to USD"""
     return {
         'USD': 1.0,      # US Dollar
@@ -13,16 +13,16 @@ def get_exchange_rates():
         'AED': 3.67,     # UAE Dirham
     }
 
-def convert_currency(amount, from_currency, to_currency, rates):
+def change_currency(amount, from_currency, to_currency, rates):
     """Convert amount from one currency to another"""
     if from_currency not in rates or to_currency not in rates:
         return None
     
     # Convert to USD first, then to target currency
     amount_in_usd = amount / rates[from_currency]
-    converted_amount = amount_in_usd * rates[to_currency]
+    changed_amount = amount_in_usd * rates[to_currency]
     
-    return converted_amount
+    return changed_amount
 
 def display_available_currencies(rates):
     """Display all available currencies"""
@@ -31,7 +31,7 @@ def display_available_currencies(rates):
         print(f"  - {currency}")
 
 def main():
-    rates = get_exchange_rates()
+    rates = get_exchange_prices()
     
     print("=" * 50)
     print("        CURRENCY CONVERTER")
@@ -59,7 +59,7 @@ def main():
         return
     
     # Convert currency
-    result = convert_currency(amount, from_curr, to_curr, rates)
+    result = change_currency(amount, from_curr, to_curr, rates)
     
     if result is not None:
         print("\n" + "=" * 50)
